@@ -1,0 +1,27 @@
+{
+  "name": "arbox-duino",
+  "version": "1.0.0",
+  "description": "test2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegopenilla/arbox-duino.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diegopenilla/arbox-duino/issues"
+  },
+  "homepage": "https://github.com/diegopenilla/arbox-duino#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "live-server": "^1.2.1",
+    "serialport": "^9.0.4",
+    "ws": "^7.4.2"
+  }
+}
