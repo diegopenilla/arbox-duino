@@ -1,3 +1,5 @@
-require('./components/hdmi_render/live_server_hot_reload_hdmi_render')
-require('./components/sketch_manager/server')
+require('./hot-reload-files/live_server_hot_reload_hdmi_render')
+require('./components/sketch_manager_backend/server')
 require('./components/serial_listener/serial_listener')
+//require('./components/ableton_listener/ableton_listener')
+require('./hot-reload-files/live_server_hot_reload_sketch_manager_frontend') 

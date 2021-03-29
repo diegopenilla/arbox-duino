@@ -5,41 +5,41 @@ const cors = require('cors')
 // middleware => req.body always a string
 app.use(express.text())
 app.use(cors())
-
 const port = 3000
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-
 // file list
 app.get("/getSketches", (req, res)=> {
-  
-
   const files = [];
-  
-  fs.readdirSync("../hdmi_render/sketches").forEach(file => {
+  fs.readdirSync("./components/hdmi_render/sketches").forEach(file => {
     console.log(file)
     files.push(file) 
   });
-  res.send(files.join(","))
+  const sketches = {currentSketch: 'blabla.js', sketches: ['asdasd.js', 'blabla.js']}
 
+  res.send(files.join(","))
+})
+
+
+app.get("/getCurrentSketch", (req, res)=> {
+  const files = [];
+  const buf = fs.readFileSync("./components/hdmi_render/public/currentSketch.js")
+  console.log("sending", buf.toString())
+  res.send(buf.toString());
 })
 
 // receives files from post and writes into hdmi_render/sketches
 app.post('/sketchReceiver', (req, res) => {
-    console.log("Received Text Input")
+    console.log("Received Text Input\n", req.body)
     
+    // TODO: if first.js doestn exist 
     // for history
     fs.writeFileSync(
-        "../hdmi_render/sketches/first.js", 
+        "./components/hdmi_render/sketches/first.js", 
         req.body
     )
 
     // to change display
     fs.writeFileSync(
-        "../hdmi_render/public/currentSketch.js", 
+        "./components/hdmi_render/public/currentSketch.js", 
         req.body
     )
 

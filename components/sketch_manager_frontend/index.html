@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>browser-amd-editor</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+</head>
+
+<body>
+  <h2>Monaco Editor Sample</h2>
+  <button onclick="handleClick(event)" type="button" >click me</button>
+  <div id="container" style="width: 800px; height: 600px; border: 1px solid grey"></div>
+
+  <!-- OR ANY OTHER AMD LOADER HERE INSTEAD OF loader.js  script src ../../../node_modules/monaco-editor/min/vs/loader.js   config vs '../../../node_modules/monaco-editor/min/vs'-->
+  <script src="../../node_modules/monaco-editor/min/vs/loader.js"></script>
+  <script>
+    require.config({ paths: { vs: '../../node_modules/monaco-editor/min/vs' } });
+    let editor;
+    require(['vs/editor/editor.main'], async ()=> {
+      const url = 'http://localhost:3000/getCurrentSketch'
+      const sketch = await fetch(url).then(res => res.text())//.then(sketch => console.log("llego,", sketch))
+      //console.log("llego,", )
+      editor = monaco.editor.create(document.getElementById('container'), {
+        value: sketch,
+        language: 'javascript'
+      });
+    });
+
+    function handleClick(event) {
+      event.preventDefault();
+      const data = editor.getValue();
+      console.log("Sending",data)
+      const url = 'http://localhost:3000/sketchReceiver'
+      const response = fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'Content-Type': 'text/plain'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        mode: 'no-cors', // no-cors, *cors, same-origin
+        // cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        // credentials: 'same-origin', // include, *same-origin, omit
+        
+        // redirect: 'follow', // manual, *follow, error
+        // referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: data // body data type must match "Content-Type" header
+      })
+
+      response.then((res) => {
+        console.log("asas")
+      })
+
+
+    }
+  </script>
+</body>
+
+</html>

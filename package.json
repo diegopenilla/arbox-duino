@@ -21,7 +21,11 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "live-server": "^1.2.1",
+    "max4node": "^0.1.2",
+    "midi": "^1.0.0",
+    "monaco-editor": "^0.23.0",
     "serialport": "^9.0.4",
+    "virtual-serialport": "^4.0.1",
     "ws": "^7.4.2"
   }
 }

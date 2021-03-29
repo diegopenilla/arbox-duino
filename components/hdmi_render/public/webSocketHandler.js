@@ -1,7 +1,9 @@
 // WebSocket for HTML ! 
 // Data received is going to be stored in global variables of the total sketch
-const ws = new WebSocket('ws://192.168.178.128:8000');
-let channel1 = {x: 0, y:0 }
+const IP = 'localhost' //'192.168.178.128'
+const ws = new WebSocket(`ws://${IP}:8000`);
+let channel1 = 0; //{x: 0, y:0 }
+let channel2 = 0;
 
 ws.onopen = function open() {
     console.log("Port Open")
@@ -9,6 +11,10 @@ ws.onopen = function open() {
 }
 
 ws.onmessage = function incoming(data) {
+  // console.log("Message arrived", data)
+  // var income_data = data.data.split(',')
+  // channel1 = Number(income_data[0])
+  // channel2 = Number(income_data[1])
 
   var income_data = data.data.split(',')
   const x = Number(income_data[0].replace("X", ""))

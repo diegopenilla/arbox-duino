@@ -9,6 +9,3 @@ Uploads new sketches to `hdmi_render/sketches` and modifies the `currentSketch.j
 - Writes into `hdmi/sketches` and `currentSketch.js`
 
 
-## Frontend
-
-- Makes UI for uploading or modifying what's displayed on `hdmi_render`.
